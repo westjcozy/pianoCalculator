@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script>
+      const currentSong = <%- JSON.stringify(locals.song) || 'undefined' %>
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"
+    ></script>
+  </head>
+  <body>
+    <div class="buttons">
+      <% if (locals.song == null) { %>
+      <button class="record-button btn">Record</button>
+      <% } else { %>
+      <a href="/" class="btn">Record New Song</a>
+      <% } %>
+      <button class="play-button btn <%= locals.song != null ? 'show' : ''%>">
+        Play🎵
+      </button>
+      <button class="save-button btn">Save</button>
+    </div>
+    <a href="#" class="btn song-link">View Song</a>
+    <div id="calculator">
+      <input id="display" readonly />
+      <div class="keys">
+        <button onclick="appendToDisplay('+')" class="operator-btn">+</button>
+        <button onclick="appendToDisplay('7')" data-note="Gb" class="key black">
+          <span style="font-size: 50px">7</span
+          ><span style="font-size: 30px">Gb</span>
+        </button>
+
+        <button onclick="appendToDisplay('8')" data-note="Ab" class="key black">
+          <span style="font-size: 50px">8</span
+          ><span style="font-size: 30px">Ab</span>
+        </button>
+
+        <button onclick="appendToDisplay('9')" data-note="Bb" class="key black">
+          <span style="font-size: 50px">9</span
+          ><span style="font-size: 30px">Bb</span>
+        </button>
+
+        <button onclick="appendToDisplay('-')" class="operator-btn">-</button>
+        <button onclick="appendToDisplay('4')" data-note="B" class="key white">
+          <span style="font-size: 50px">4</span
+          ><span style="font-size: 30px">B</span>
+        </button>
+
+        <button onclick="appendToDisplay('5')" data-note="Db" class="key black">
+          <span style="font-size: 50px">5</span
+          ><span style="font-size: 30px">Db</span>
+        </button>
+
+        <button onclick="appendToDisplay('6')" data-note="Eb" class="key black">
+          <span style="font-size: 50px">6</span
+          ><span style="font-size: 30px">Eb</span>
+        </button>
+
+        <button onclick="appendToDisplay('*')" class="operator-btn">*</button>
+        <button onclick="appendToDisplay('1')" data-note="F" class="key white">
+          <span style="font-size: 50px">1</span
+          ><span style="font-size: 30px">F</span>
+        </button>
+
+        <button onclick="appendToDisplay('2')" data-note="G" class="key white">
+          <span style="font-size: 50px">2</span
+          ><span style="font-size: 30px">G</span>
+        </button>
+
+        <button onclick="appendToDisplay('3')" data-note="A" class="key white">
+          <span style="font-size: 50px">3</span
+          ><span style="font-size: 30px">A</span>
+        </button>
+
+        <button onclick="appendToDisplay('/')" class="operator-btn">/</button>
+        <button onclick="appendToDisplay('0')" data-note="C" class="key white">
+          <span style="font-size: 50px">0</span
+          ><span style="font-size: 30px">C</span>
+        </button>
+
+        <button onclick="appendToDisplay('.')" data-note="D" class="key white">
+          <span style="font-size: 50px">.</span
+          ><span style="font-size: 30px">D</span>
+        </button>
+
+        <button onclick="calculate()" data-note="E" class="key white">
+          <span style="font-size: 50px">=</span
+          ><span style="font-size: 30px">E</span>
+        </button>
+        <button onclick="clearDisplay()" class="operator-btn">C</button>
+        <button onclick="clearAllDisplay()" class="operator-btn">AC</button>
+        <button onclick="appendToDisplay('00')">00</button>
+        <button onclick="appendToDisplay('000')">000</button>
+      </div>
+    </div>
+
+    <audio id="C" src="/notes/C.mp3"></audio>
+    <audio id="Db" src="/notes/Db.mp3"></audio>
+    <audio id="D" src="/notes/D.mp3"></audio>
+    <audio id="Eb" src="/notes/Eb.mp3"></audio>
+    <audio id="E" src="/notes/E.mp3"></audio>
+    <audio id="F" src="/notes/F.mp3"></audio>
+    <audio id="Gb" src="/notes/Gb.mp3"></audio>
+    <audio id="G" src="/notes/G.mp3"></audio>
+    <audio id="Ab" src="/notes/Ab.mp3"></audio>
+    <audio id="A" src="/notes/A.mp3"></audio>
+    <audio id="Bb" src="/notes/Bb.mp3"></audio>
+    <audio id="B" src="/notes/B.mp3"></audio>
+    <script src="/script.js"></script>
+  </body>
+</html>
